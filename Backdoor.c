@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <signal.h>
 
-#define MINHA_PORTA 31337;
+#define MINHA_PORTA 31337; /* change the port */
 #define BACKLOG 5;
 
 int main(int argc, char *argv[])
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
             bzero(&local, sizeoff(local));
             local.sin_family = AF_INET;
             local.sin_port = htons(MINHA_PORTA);
-            local.sin_addr.s_addr = INADDR_ANY;
+            local.sin_addr.s_addr = INADDR_ANY; /* define the local addrs */
             bzero(&(local.sin_zero), 8);
             
             Meusocket = socket(AF_INET, SOCK_STREAM, 0);
