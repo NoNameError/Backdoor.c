@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
   struct sockaddr_in local;
   struct sockaddr_in remote;
   int MINHA_PORTA;
-  MINHA_PORTA = 31337;
   
   if(fork() == 0){
             strcpy(argv[0], "[kflushd]");
