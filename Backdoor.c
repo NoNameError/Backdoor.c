@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <system.h>
+#include <errno.h>
+#include <strings.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <signal.h>
+
+#define MINHA_PORTA 31337;
+#define BACKLOG 5;
+
 int main(int argc, char *argv[])
 {
   int Meusocket, Novosocket, tamanho;
